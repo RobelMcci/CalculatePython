@@ -1,50 +1,61 @@
-# CalculatePython
-Un travail pratique : créer une petite application de calculatrice scientifique en Python.
+# Calculette du second degré (PyScript + Python + Bootstrap)
 
-# import math
-L'importation du paquet `math` en Python permet d'utiliser des fonctions mathématiques, par exemple `sqrt()` pour la racine carrée.
+Une petite application web permettant de résoudre les équations du second degré de la forme :
 
-# Formule de la calcule de l'équation du second degrée
+ax2+bx+c=0
 
-Si Deltat < 0 : L'équation ax² + bx + c = 0 n'a pas de solution réelle
+en utilisant Python directement dans le navigateur grâce à PyScript.
 
-Si Deltat = 0 : L'équation ax² + bx + c = 0 a une unique solution alors :
-    X = -b / 2a
+# Fonctionnalités
 
-Si Delta > 0 : l'équation ax² + bx + c = 0 a deux solutions distinctes :
-    X1 = (-b - sqrt(Delta)) / (2a)
-    X2 = (-b + sqrt(Delta)) / (2a)
-Backend : Manoa
-Frontend : Géraldine
+Interface simple et responsive grâce à Bootstrap 5.
 
-Revue de code :
-Objectif :
-- Qualité du code (propreté, cohérence, lisibilité)
-- Fonctionnalité correcte (comportement attendu)
-Fréquence : à chaque push
+Résolution automatique après saisie de a, b, c.
 
+## Affichage de :
+    Le discriminant (Δ)
+    Les racines x1 et x2
+	​
 
-# 🧮 TP – Calculette en Python
+## Gestion des cas particuliers :
+    a=0 → équation du premier degré
+    Δ=0 → racine double
+    Δ<0 → racines complexes
 
-## 🎯 But du projet
-Créer une petite **calculette en Python** capable d’effectuer une équation de second degré.
-L’objectif est de pratiquer la programmation, le travail en équipe et la revue de code.
+# Technologies utilisées
+    HTML5 / Bootstrap 5.3 pour le front-end
+    PyScript 2025.11.1 pour exécuter le code Python côté navigateur
+    Pyodide (interne à PyScript) pour le lien entre Python et JavaScript
 
----
+# Explication du fichier main.py
+    Le fichier main.py contient toute la logique de calcul et d’interaction avec le DOM (le HTML).
 
-## 💻 Technologies utilisées
-- **Python 3**
-- **Git / GitHub** pour le travail collaboratif
+## Étapes principales :
+    Importation des modules :
+        from js import document
+        from pyodide.ffi import create_proxy
+        import math
+    
+    document permet d’accéder aux éléments HTML depuis Python.
+    create_proxy sert à connecter proprement une fonction Python à un événement JavaScript.
+    math est utilisé pour les racines carrées et calculs.
+    
+    Définition de la fonction principale :
+        def calculer_equation(event):
+            a = float(document.getElementById("valeur-a").value or 0)
+            b = float(document.getElementById("valeur-b").value or 0)
+            c = float(document.getElementById("valeur-c").value or 0)
 
----
-
-## 👥 Répartition des rôles
-- **Dev 1** : logique de la calculette
-- **Dev 2** : interface utilisateur
-
----
-
-## 🔎 Consignes de revue de code
-- Chaque modification passe par une **Pull Request**.
-- Un autre membre **relit et teste** avant d’approuver.
-- Le code doit être **lisible, testé et conforme au style PEP8**.
+            delta = b**2 - 4*a*c
+    
+    Affichage dans les champs de sortie :
+        document.getElementById("outputDelta").value = round(delta, 4)
+        
+        Les résultats sont directement injectés dans les champs HTML (outputDelta, output-x1, output-x2).
+    
+    Connexion de l’événement :
+        proxy = create_proxy(calculer_equation)
+        btn = document.getElementById("btn-valider")
+        btn.addEventListener("click", proxy)
+        
+        Cette partie est essentielle : elle empêche Pyodide de “détruire” la fonction Python après le premier clic
