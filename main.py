@@ -8,7 +8,7 @@ def calculer_equation(event):
         b = float(document.getElementById("valeur-b").value or 0)
         c = float(document.getElementById("valeur-c").value or 0)
 
-        delta = b**2 - 4*a*c
+        delta = b*b - 4*a*c
         document.getElementById("outputDelta").value = round(delta, 4)
 
         if a == 0:
