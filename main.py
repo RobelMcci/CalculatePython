@@ -1,4 +1,4 @@
-from js import document
+            from js import document
 from pyodide.ffi import create_proxy
 import math
 
