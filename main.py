@@ -1,9 +1,12 @@
+from pyscript import document
 import math
 
 a = int(input("Entrez la valeur de a : "))
 b = int(input("Entrez la valeur de b : "))
 c = int(input("Entrez la valeur de c : "))
-
+output_deltat = ""
+output_x1 = ""
+output_x2 = ""
 deltat = b*b - 4*a*c
 
 if deltat > 0 :
@@ -11,6 +14,10 @@ if deltat > 0 :
     x2 = (-b + math.sqrt(deltat))/2*a
     print ("L'équation   ax2+bx+c=0 a deux solutions distinctes")
     print("Les valeurs de X sont " , x1 , "et" , x2)
+    output_x1 = x1
+    output_x2 = x2
+    output_deltat = deltat
+
 
 elif deltat == 0 :
     x = -b/2*a
@@ -19,4 +26,3 @@ elif deltat == 0 :
 
 else :
     print("Il n'y a pas de solution réelle")
-
