@@ -9,7 +9,7 @@ def calculer_equation(event):
         c = float(document.getElementById("valeur-c").value or 0)
 
         delta = b*b - 4*a*c
-        document.getElementById("outputDelta").value = round(delta, 4)
+        document.getElementById("output-delta").value = round(delta, 4)
 
         if a == 0:
             if b != 0:
@@ -26,20 +26,20 @@ def calculer_equation(event):
                 document.getElementById("output-x1").value = round(x1, 4)
                 document.getElementById("output-x2").value = round(x2, 4)
                 resultatdeltat = "Deux solutions réelles distinctes"
-                document.innertext.getElementById("valeurdeltat").value = resultatdeltat
+                document.innertext.getElementById("valeurdelta").value = resultatdelta
             elif delta == 0:
                 x = -b / (2 * a)
                 document.getElementById("output-x1").value = round(x, 4)
                 document.getElementById("output-x2").value = round(x, 4)
                 resultatdeltat = "Une seule solution réelle"
-                document.innertext.getElementById("valeurdeltat").value = resultatdeltat
+                document.innertext.getElementById("valeurdelta").value = resultatdelta
             else:
                 real = -b / (2 * a)
                 imag = math.sqrt(-delta) / (2 * a)
                 document.getElementById("output-x1").value = f"{round(real, 4)} - {round(imag, 4)}i"
                 document.getElementById("output-x2").value = f"{round(real, 4)} + {round(imag, 4)}i"
                 resultatdeltat = "Aucune solution réelle"
-                document.innertext.getElementById("valeurdeltat").value = resultatdeltat
+                document.innertext.getElementById("valeurdelta").value = resultatdelta
     except Exception as e:
         print("Erreur :", e)
 
