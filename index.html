@@ -1,4 +1,5 @@
-<HTML lang=""fr">
+<!DOCTYPE html>
+<HTML lang="fr">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,8 +25,8 @@
               <label for="valeur-a" class="col-form-label">Valeur de a</label>
             </div>
             <div class="col-auto">
-              <input type="number" id="valeur-a" step="1" class="form-control">
-            </div>
+                <input type="number" id="valeur-a" step="any" class="form-control">
+              </div>
           </div>
 
           <!--Valeur de b-->
@@ -34,7 +35,7 @@
               <label for="valeur-b" class="col-form-label">Valeur de b</label>
             </div>
             <div class="col-auto">
-              <input type="number" id="valeur-b" step="1" class="form-control">
+              <input type="number" id="valeur-b" step="any" class="form-control">
             </div>
           </div>
 
@@ -44,11 +45,11 @@
               <label for="valeur-c" class="col-form-label">Valeur de c</label>
             </div>
             <div class="col-auto">
-              <input type="number" id="valeur-c" step="1" class="form-control">
+              <input type="number" id="valeur-c" step="any" class="form-control">
             </div>
           </div>
 
-          <button class="btn btn-primary" type="submit">Valider</button>
+          <button class="btn btn-primary" id="btn-valider" type="button">Valider</button>
           <button class="btn btn-secondary" type="reset">Réinitialiser</button>
         </form>
         <form class="col">
@@ -59,7 +60,10 @@
               <label for="output_Δ" class="col-form-label">Valeur de Δ</label>
             </div>
             <div class="col-auto">
-              <input type="number" id="output_Δ" class="form-control" readonly>
+              <input type="number" id="outputDelta" class="form-control" readonly>
+            </div>
+            <div class="col-auto">
+              <p id="valeurdeltat"></p>
             </div>
           </div>
 
@@ -85,6 +89,8 @@
         </form>
       </div>
     </div>
+    <py-script src="main.py"/>
+
     <py-script src="main.py"/>
 
   </body>
